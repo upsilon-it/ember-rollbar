@@ -1,26 +1,49 @@
-# Ember-rollbar
+Ember Addon for [Rollbar](https://rollbar.com).
 
-This README outlines the details of collaborating on this Ember addon.
+[![Dependency Status](https://travis-ci.org/vihryn/ember-rollbar-service.svg)](https://travis-ci.org/vihryn/ember-rollbar-service)
+[![Build Status](https://travis-ci.org/vihryn/ember-rollbar-service.svg?branch=master)](https://travis-ci.org/vihryn/ember-rollbar-service)
 
-## Installation
+`By default, Ember.onerror and rejected promises log to Rollbar.`
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+## Usage
 
-## Running
+Set config rollbar in appllication. It uses for configuring Rollbar.
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+```
+ENV: {
+  APP: {
+    rollbar: {
+      enabled: true,
+      captureUncaught: true,
+      payload: {
+        environment
+      }
+    }
+  }
+}
+```
 
-## Running Tests
+You can inject rollbar and get access to configure method and rollbar instance.
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```
+// component.js
 
-## Building
+import Ember from 'ember';
+const {
+  Component,
+  inject: { service }
+} = Ember;
 
-* `ember build`
+export default Component.extend({
+  rollbarService: service('rollbar'),
+  didInserElement() {
+    this._super();
+    get(this, 'rollbarService.rollbar').error('Error text.');
+    get(this, 'rollbarService').configure({ enabled: false });
+  }
+});
+```
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+## More Info
+
+Please check out [Rollbar JavaScript docs](https://rollbar.com/docs/notifier/rollbar.js/)
