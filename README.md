@@ -1,6 +1,5 @@
 Ember Addon for [Rollbar](https://rollbar.com).
 
-[![Dependency Status](https://travis-ci.org/vihryn/ember-rollbar.svg)](https://travis-ci.org/vihryn/ember-rollbar)
 [![Build Status](https://travis-ci.org/vihryn/ember-rollbar.svg?branch=master)](https://travis-ci.org/vihryn/ember-rollbar)
 
 `By default, Ember.onerror and rejected promises log to Rollbar.`
