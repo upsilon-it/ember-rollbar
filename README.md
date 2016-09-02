@@ -4,6 +4,13 @@ Ember Addon for [Rollbar](https://rollbar.com).
 
 `By default, Ember.onerror and rejected promises log to Rollbar.`
 
+## Installing
+
+```
+ember install ember-rollbar
+ember generate ember-rollbar
+```
+
 ## Usage
 
 Set config rollbar in appllication. It uses for configuring Rollbar.

@@ -2,6 +2,8 @@
 module.exports = {
   description: '',
 
+  normalizeEntityName: function() {},
+
   // locals: function(options) {
   //   // Return custom template variables here.
   //   return {
@@ -10,6 +12,6 @@ module.exports = {
   // }
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('rollbar');
+    return this.addBowerPackageToProject('rollbar', '1.9.1');
   }
 };
