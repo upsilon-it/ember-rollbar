@@ -8,7 +8,6 @@ Ember Addon for [Rollbar](https://rollbar.com).
 
 ```
 ember install ember-rollbar
-ember generate ember-rollbar
 ```
 
 ## Usage
