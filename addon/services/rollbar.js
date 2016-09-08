@@ -13,7 +13,16 @@ window._getErrors = () => GLOBAL_ERRORS;
 window._resetErrors = () => GLOBAL_ERRORS.length = 0;
 
 const reportError = (...args) => {
+  const [ err ] = args;
+
   Rollbar.error.apply(Rollbar, args);
+
+  // By default `JSON.stringify` for `Error` instance return `{}`. Replace it with `error.stack`
+  if (err instanceof Error) {
+    const { stack } = err;
+    args[0] = stack;
+  }
+
   GLOBAL_ERRORS.push(JSON.parse(JSON.stringify(args)));
 };
 
