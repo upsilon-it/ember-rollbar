@@ -4,7 +4,8 @@ import Ember from 'ember';
 const {
   Service,
   set,
-  RSVP
+  RSVP,
+  Logger
 } = Ember;
 
 const GLOBAL_ERRORS = [];
@@ -14,9 +15,13 @@ window._resetErrors = () => GLOBAL_ERRORS.length = 0;
 
 const reportError = (...args) => {
   const [ err ] = args;
-
-  Rollbar.error.apply(Rollbar, args);
-
+  
+  // next allow do not report to rollbar if key is empty
+  const { options: { rollbarKey } } = Rollbar; 
+  if (rollbarKey) {
+    Rollbar.error.apply(Rollbar, args);
+  }
+  
   // By default `JSON.stringify` for `Error` instance return `{}`. Replace it with `error.stack`
   if (err instanceof Error) {
     const { stack } = err;
@@ -27,6 +32,7 @@ const reportError = (...args) => {
 };
 
 const reportEmberErrorToRollbar = (error, source) => {
+  Logger.error(error);
   if (error instanceof Error) {
     reportError(error, { emberSource: `${source} with error object` });
   } else if (error) {
