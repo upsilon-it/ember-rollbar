@@ -17,8 +17,8 @@ const reportError = (...args) => {
   const [ err ] = args;
   
   // next allow do not report to rollbar if key is empty
-  const { options: { rollbarKey } } = Rollbar; 
-  if (rollbarKey) {
+  const { options: { accessToken } } = Rollbar; 
+  if (accessToken) {
     Rollbar.error.apply(Rollbar, args);
   }
   
