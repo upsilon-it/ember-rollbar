@@ -16,6 +16,11 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      
+      // Put your settings below
+      "ROLLBAR_ENABLED": true,
+      "ROLLBAR_ENV": "dev",
+      "ROLLBAR_KEY": "dummy rollbar key"
     }
   };
 
