@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vihryn/ember-rollbar.git"
+    "url": "https://github.com/upsilon-it/ember-rollbar.git"
   },
   "engines": {
     "node": ">= 0.10.0"
